@@ -17,9 +17,8 @@ class TestChoiceOne(unittest.TestCase):
         mock_cursor = Mock()
         mock_cursor.fetchall.return_value = []
 
-        result = choice_one(mock_cursor)
-
-        self.assertIsNone(result)
+        with self.assertRaises(IndexError):
+            result = choice_one(mock_cursor)
 
     @patch('random.choice', side_effect=lambda x: x[0])
     def test_choice_one_single_data(self, mock_choice):

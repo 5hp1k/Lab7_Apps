@@ -1,6 +1,5 @@
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow, QColorDialog
-from PyQt5.QtGui import QTransform
 import sys
 
 
@@ -14,10 +13,10 @@ class MyWidget(QMainWindow):
             'firstBox': self.change_color,
             'secondBox': self.change_text,
             'thirdBox': self.enlarge_button,
-            'fourthBox': self.make_button_invisible,
+            'fourthBox': self.hide_button,
             'fifthBox': self.set_inactive
         }
-
+        
         for checkbox, action in self.checkbox_actions.items():
             getattr(self, checkbox).stateChanged.connect(action)
 
@@ -40,11 +39,11 @@ class MyWidget(QMainWindow):
         else:
             self.pushButton.setGeometry(120, 200, 93, 28)
 
-    def make_button_invisible(self):
+    def hide_button(self):
         if self.fourthBox.isChecked():
-            self.pushButton.setVisible(False)
+            self.pushButton.setHidden(True)
         else:
-            self.pushButton.setVisible(True)
+            self.pushButton.setHidden(False)
 
     def set_inactive(self):
         if self.fifthBox.isChecked():
